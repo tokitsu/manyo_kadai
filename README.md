@@ -16,7 +16,7 @@
 
  ・Useテーブル  
  ・Taskテーブル  
- ・Labelテーブル    
+ ・Labelテーブル      
 
 2.それぞれのテーブルのカラム名  
 
@@ -35,13 +35,13 @@ Taskテーブル
 
 Labelテーブル    
 
- ・user_id
- ・task_id    
+ ・user_id  
+ ・task_id      
 
 3.テーブルの関係性    
 
  ・Userは複数のTaskを持つ  
  ・Userは複数のLabelを持つ  
- ・Taskは複数のLabelを持つ    
+ ・Taskは複数のLabelを持つ      
 
 4.データベースはpostgresqlを使用する    
