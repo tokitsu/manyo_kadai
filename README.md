@@ -1,45 +1,50 @@
 # README
 
-# タスク管理アプリケーションの作成(ruby on railsを使用する)
+## タスク管理アプリケーションの作成(ruby on railsを使用する)
 
 
-## タスク管理アプリケーションを作成します。以下の機能をつけること。
 
-### 1.Userがいること
-### 2.Userがタスクを登録できる。
-### 3.TaskにはLabelを複数つけることができる。
-### 4.Labelは複数のTaskにつけられる。
+### タスク管理アプリケーションを作成します。以下のようにデータベースを関連づけること。
 
-## データベースはpostgresqlを使用する。
+#### 1.Userがいること
+#### 2.Userがタスクを登録できる。
+#### 3.TaskにはLabelを複数つけることができる。
+#### 4.Labelは複数のTaskにつけられる。
 
-## テーブルは３つ作成する
 
-### 1.Useテーブル
-### 2.Taskテーブル
-### 3.Labelテーブル
+###データベースの内容
 
-## それぞれのテーブルのカラム名
 
-### Userテーブル
+#### 1. テーブルは３つ作成する
 
-#### 1.user_id
-#### 2.name
-#### 3.email_adress
-#### 4.password
-#### 5.password_confirmation
+##### ・Useテーブル
+##### ・Taskテーブル
+##### ・Labelテーブル
 
-### Taskテーブル
+#### 2.それぞれのテーブルのカラム名
 
-#### 1.task_id
-#### 2.content
+##### Userテーブル
 
-### Labelテーブル
+##### ・user_id
+##### ・name
+##### ・email_adress
+##### ・password
+##### ・password_confirmation
 
-#### 1.user_id
-#### 2.task_id
+##### Taskテーブル
 
-## テーブルの関係性
+##### ・task_id
+##### ・content
 
-### 1.Userは複数のTaskを持つ
-### 2.Userは複数のLabelを持つ
-### 3.Taskは複数のLabelを持つ
+##### Labelテーブル
+
+##### ・user_id
+##### ・task_id
+
+#### 3.テーブルの関係性
+
+##### ・Userは複数のTaskを持つ
+##### ・Userは複数のLabelを持つ
+##### ・Taskは複数のLabelを持つ
+
+#### 4.データベースはpostgresqlを使用する。
