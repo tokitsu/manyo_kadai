@@ -1,24 +1,45 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#タスク管理アプリケーションの作成(ruby on railsを使用する)
 
-Things you may want to cover:
 
-* Ruby version
+##タスク管理アプリケーションを作成します。以下の機能をつけること。
 
-* System dependencies
+###１、Userがいること
+###２、Userがタスクを登録できる。
+###３、TaskにはLabelを複数つけることができる。
+###４、Labelは複数のTaskにつけられる。
 
-* Configuration
+##データベースはpostgresqlを使用する。
 
-* Database creation
+##テーブルは３つ作成する
 
-* Database initialization
+###１、Useテーブル
+###２、Taskテーブル
+###３、Labelテーブル
 
-* How to run the test suite
+##それぞれのテーブルのカラム名
 
-* Services (job queues, cache servers, search engines, etc.)
+###Userテーブル
 
-* Deployment instructions
+####１、user_id
+####２、name
+####３、email_adress
+####４、password
+####５、password_confirmation
 
-* ...
+###Taskテーブル
+
+####１、task_id
+####２、content
+
+###Labelテーブル
+
+####１、user_id
+####２、task_id
+
+##テーブルの関係性
+
+###１、Userは複数のTaskを持つ
+###２、Userは複数のLabelを持つ
+###３、Taskは複数のLabelを持つ
