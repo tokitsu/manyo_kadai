@@ -1,6 +1,6 @@
-<h3>詳細</h3><br>
-名前<%= @task.name %><br>
-内容<%= @task.content %><br><br>
+<h3><%= t('view.show')%></h3><br>
+<%= t('view.name')%><%= @task.name %><br>
+<%= t('view.content')%><%= @task.content %><br><br>
 
-<%= link_to "編集", edit_task_path %>
-<%= link_to "一覧", tasks_path %>
+<%= link_to t('view.edit'), edit_task_path %>
+<%= link_to t('view.index'), tasks_path %>

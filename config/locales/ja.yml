@@ -1,4 +1,13 @@
 ja:
+  view:
+    name: "タイトル"
+    content: "内容"
+    new: "新規登録"
+    show: "詳細"
+    edit: "編集"
+    destroy: "削除"
+    index: "一覧"
+    submit: "投稿する"
   activerecord:
     models:
       blog: "ブログ"
