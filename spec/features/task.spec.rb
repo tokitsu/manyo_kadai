@@ -1,14 +1,35 @@
 # このrequireで、Capybaraなどの、Feature Specに必要な機能を使用可能な状態にしています
 require 'rails_helper'
-
 # このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
+FactoryBot.define do
+
+  # 作成するテストデータの名前を「task」とします
+  # （実際に存在するクラス名と一致するテストデータの名前をつければ、そのクラスのテストデータを自動で作成します）
+  factory :task do
+    name { "test2" }
+    content {"testtesttest"}
+  end
+
+  # 作成するテストデータの名前を「second_task」とします
+  # （存在しないクラス名の名前をつける場合、オプションで「このクラスのテストデータにしてください」と指定します）
+  factory :second_task, class: Task do
+    name { 'test1' }
+    content { 'samplesample' }
+  end
+end
+
 RSpec.feature "タスク管理機能", type: :feature do
-  # scenario（itのalias）の中に、確認したい各項目のテストの処理を書きます。
+  background do
+    # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
+    FactoryBot.create(:task)
+    FactoryBot.create(:second_task)
+  end
+
+# 省略
+
+# scenario（itのalias）の中に、確認したい各項目のテストの処理を書きます。
   scenario "タスク一覧のテスト" do
     # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
-    Task.create!(name: 'test_task_01', content: 'testtesttest')
-    Task.create!(name: 'test_task_02', content: 'samplesample')
-
   # tasks_pathにvisitする（タスク一覧ページに遷移する）
     visit tasks_path
 
@@ -22,13 +43,15 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     visit new_task_path
 
-    fill_in "名前", with: "com"
-    fill_in "内容", with: "www"
+
+
+    fill_in 'name' ,with: 'com'
+    fill_in 'content' , with: 'www'
 
 
     click_on '投稿する'
 
-    expect(page).to have_content '新規登録しました!'
+    expect(page).to have_content '新規作成'
   end
 
   scenario "タスク詳細のテスト" do
@@ -38,5 +61,17 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit task_path(task.id)
 
     expect(page).to have_content 'test333'
+  end
+
+  scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+
+    visit tasks_path
+
+      task_names = Task.all.map(&:name)
+
+      expect(task_names).to eq %w(test2 test1)
+
+
+
   end
 end
