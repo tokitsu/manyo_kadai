@@ -1,8 +1,7 @@
 <h3><%= t('view.index')%></h3>
 <%= notice %><br>
 <% @tasks.each do |task| %>
-<%=t('view.name')%>
-<li class="task-name"><%= task.name %><li><br>
+<%=t('view.name')%><%= task.name %><br>
 <%= t('view.content')%><%= task.content %><br>
 <%= link_to t('view.edit'),edit_task_path(task.id) %>
 <%= link_to t('view.show'), task_path(task.id) %>
