@@ -1,10 +1,13 @@
 <h3><%= t('view.index')%></h3>
 <%= notice %><br>
 <% @tasks.each do |task| %>
-<%=t('view.name')%><%= task.name %><br>
-<%= t('view.content')%><%= task.content %><br>
-<%= link_to t('view.edit'),edit_task_path(task.id) %>
-<%= link_to t('view.show'), task_path(task.id) %>
-<%= link_to t('view.destroy'), task_path(task.id), method: :delete, data:{ confirm: "本当に削除していいですか？"} %><br>
+  <%=t('view.name')%><%= task.name %><br>
+  <%= t('view.content')%><%= task.content %><br>
+  期限 <%= task.expired_date %><br>
+  <%= link_to t('view.edit'),edit_task_path(task.id) %>
+  <%= link_to t('view.show'), task_path(task.id) %>
+  <%= link_to t('view.destroy'), task_path(task.id), method: :delete, data:{ confirm: "本当に削除していいですか？"} %><br>
 <% end %><br><br>
+<%= link_to "新着順にする", tasks_path %><br>
+<%= link_to "終了期限順にする", tasks_path(sort_expired: "true") %><br>
 <%= link_to t('view.new'), new_task_path %>
