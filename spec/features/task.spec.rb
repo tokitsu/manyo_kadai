@@ -6,14 +6,14 @@ FactoryBot.define do
   # 作成するテストデータの名前を「task」とします
   # （実際に存在するクラス名と一致するテストデータの名前をつければ、そのクラスのテストデータを自動で作成します）
   factory :task do
-    name { "test2" }
+    name { "test1" }
     content {"testtesttest"}
   end
 
   # 作成するテストデータの名前を「second_task」とします
   # （存在しないクラス名の名前をつける場合、オプションで「このクラスのテストデータにしてください」と指定します）
   factory :second_task, class: Task do
-    name { 'test1' }
+    name { 'test2' }
     content { 'samplesample' }
   end
 end
@@ -45,13 +45,13 @@ RSpec.feature "タスク管理機能", type: :feature do
 
 
 
-    fill_in 'name' ,with: 'com'
-    fill_in 'content' , with: 'www'
+    fill_in "task_name" ,with: "com"
+    fill_in "task_content" , with: "www"
 
 
     click_on '投稿する'
 
-    expect(page).to have_content '新規作成'
+    expect(page).to have_content 'com'
   end
 
   scenario "タスク詳細のテスト" do
@@ -67,7 +67,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     visit tasks_path
 
-      task_names = Task.all.map(&:name)
+      task_names = Task.all.order(created_at: "DESC").map(&:name)
 
       expect(task_names).to eq %w(test2 test1)
 
