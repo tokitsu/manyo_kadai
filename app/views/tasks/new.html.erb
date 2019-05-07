@@ -10,7 +10,11 @@
 <%= form.label :expired_date %><br>
 <%= form.date_field :expired_date %><br>
 
-<%= form.submit t('view.submit') %>
+<%= form.label :status %><br>
+<%= form.select :status, Task.statuses.keys, {waiting:'waiting',working:'working',completed:'completed'} %><br>
+
+
+<%= form.submit t('view.submit') %><br>
 <% end %><br>
 
 <%= link_to t('view.index'), tasks_path %>

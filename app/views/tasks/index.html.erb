@@ -1,9 +1,19 @@
 <h3><%= t('view.index')%></h3>
 <%= notice %><br>
+
+<%= form_with(model: Task.new, local:true, method: :get, url: tasks_path) do |f|%>
+<%= f.label :name_search, "タイトル検索" %><br>
+<%= f.text_field :name %><br>
+<%= f.label :status_search, "状態検索" %><br>
+<%= f.select :status, Task.statuses.keys %>
+<%= f.hidden_field :search, value: 'true' %><br>
+<%= f.submit "検索する"%>
+<% end %><br>
 <% @tasks.each do |task| %>
   <%=t('view.name')%><%= task.name %><br>
   <%= t('view.content')%><%= task.content %><br>
   期限 <%= task.expired_date %><br>
+  状態 <%= task.status %><br>
   <%= link_to t('view.edit'),edit_task_path(task.id) %>
   <%= link_to t('view.show'), task_path(task.id) %>
   <%= link_to t('view.destroy'), task_path(task.id), method: :delete, data:{ confirm: "本当に削除していいですか？"} %><br>
