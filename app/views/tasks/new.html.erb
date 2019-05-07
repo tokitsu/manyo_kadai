@@ -13,6 +13,10 @@
 <%= form.label :status %><br>
 <%= form.select :status, Task.statuses.keys, {waiting:'waiting',working:'working',completed:'completed'} %><br>
 
+<%= form.label :priority %><br>
+<%= form.select :priority, Task.priorities.keys,
+{high:'high',middle:'middle',low:'low'}%><br>
+
 
 <%= form.submit t('view.submit') %><br>
 <% end %><br>

@@ -9,6 +9,7 @@ FactoryBot.define do
     name { "test1" }
     content {"testtesttest"}
     expired_date {"2019-05-20"}
+    priority{"low"}
   end
 
   # 作成するテストデータの名前を「second_task」とします
@@ -17,6 +18,7 @@ FactoryBot.define do
     name {"test2"}
     content {"samplesample"}
     expired_date {"2019-05-03"}
+    priority{"high"}
   end
 end
 
@@ -76,15 +78,22 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスクが終了期限順にならんでいるかのテスト" do
 
-
-
     visit tasks_path(sort_expired: "true")
 
-    task_dates = Task.all.order(expired_date: "DESC").map(&:name)
+    task_dates = Task.all.order(expired_date: "ASC").map(&:name)
 
-
-
-    expect(task_dates).to eq %w(test1 test2)
+    expect(task_dates).to eq %w(test2 test1)
 
   end
+
+  scenario "タスクが優先順位に並んでいるかのテスト" do
+
+    visit tasks_path(sort_priority: "true")
+
+    task_priorities = Task.all.order(priority:"ASC").map(&:name)
+
+    expect(task_priorities).to eq %w(test2 test1)
+
+  end
+
 end

@@ -14,10 +14,12 @@
   <%= t('view.content')%><%= task.content %><br>
   期限 <%= task.expired_date %><br>
   状態 <%= task.status %><br>
+  優先順位<%= task.priority %><br><br>
   <%= link_to t('view.edit'),edit_task_path(task.id) %>
   <%= link_to t('view.show'), task_path(task.id) %>
   <%= link_to t('view.destroy'), task_path(task.id), method: :delete, data:{ confirm: "本当に削除していいですか？"} %><br>
 <% end %><br><br>
 <%= link_to "新着順にする", tasks_path %><br>
 <%= link_to "終了期限順にする", tasks_path(sort_expired: "true") %><br>
+<%= link_to "優先順位順にする", tasks_path(sort_priority: "true") %><br>
 <%= link_to t('view.new'), new_task_path %>
