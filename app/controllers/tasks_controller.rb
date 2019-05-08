@@ -14,12 +14,13 @@ class TasksController < ApplicationController
   end
 
   def index
-  if params[:sort_priority] == "true"
-    @tasks = Task.all.order(priority: "ASC")
-  elsif params[:sort_expired] == "true"
+    if params[:sort_priority] == "true"
+      @tasks = Task.all.order(priority: "DESC")
+    elsif params[:sort_expired] == "true"
       @tasks = Task.all.order(expired_date: "ASC")
     else
       @tasks = Task.all.order(created_at: "DESC")
+      @tasks = Task.page(params[:page])
     end
   end
 
