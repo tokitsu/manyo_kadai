@@ -1,6 +1,12 @@
 <h3><%= t('view.show')%></h3><br>
-<%= t('view.name')%><%= @task.name %><br>
-<%= t('view.content')%><%= @task.content %><br><br>
-
-<%= link_to t('view.edit'), edit_task_path %>
-<%= link_to t('view.index'), tasks_path %>
+<div class="list-group">
+  <a href="#" class="list-group-item active">
+  <%= t('view.name')%>: <%= @task.name %><br></a>
+  <a href="#" class="list-group-item">
+  <%= t('view.content')%>: <%= @task.content %><br></a>
+  <a href="#" class="list-group-item">
+  期限: <%= @task.expired_date %>
+  　状態: <%= @task.status %>
+  　優先順位: <%= @task.priority %></a>
+</div>
+　<%= link_to t('view.index'), tasks_path %>
