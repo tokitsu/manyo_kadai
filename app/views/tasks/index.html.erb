@@ -1,4 +1,6 @@
-<h3><%= t('view.index')%></h3>
+
+<h3><%= current_user.name %>さん<br>
+  タスク<%= t('view.index')%></h3>
 <%= notice %><br>
   <h3><%= image_tag('/assets/111.png') %><%= link_to t('view.new'), new_task_path %></h3><br>
 <%= form_with(model: Task.new, local:true, method: :get, url: tasks_path) do |f|%>
@@ -15,6 +17,7 @@
 <%= link_to "優先順位順にする", tasks_path(sort_priority: "true") %>
 
 <% @tasks.each do |task| %>
+<% if task.user_id == current_user.id %>
 　<div class="list-group">
   <a href="#" class="list-group-item active">
   <%= t('view.name')%>: <%= task.name %><br></a>
@@ -28,5 +31,7 @@
   <%= link_to t('view.show'), task_path(task.id) %>
   <%= link_to t('view.destroy'), task_path(task.id), method: :delete, data:{ confirm: "本当に削除していいですか？"} %>
   </div>
+<% else %>
+<% end %>
 <% end %>
 　<%= paginate @tasks %>

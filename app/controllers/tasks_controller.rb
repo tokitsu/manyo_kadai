@@ -1,10 +1,14 @@
 class TasksController < ApplicationController
+
+  before_action :authenticate_user
+
   def new
     @task = Task.new
   end
 
   def create
     @task = Task.new(task_params)
+    @task.user = current_user
     if @task.save
       flash[:notice]= "新規登録しました！"
       redirect_to tasks_path

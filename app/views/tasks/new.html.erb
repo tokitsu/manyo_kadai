@@ -1,6 +1,14 @@
+<% if @task.errors.any? %>
+  <% @task.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <ul class="list-group">
   <li class="list-group-item">
     <h3><%= image_tag('/assets/111.png') %>新規作成</h3></li>
+
+
     <%= form_with(model: @task, local: true) do |form|%>
   <li class="list-group-item">
     <%= form.label :name %><br>
