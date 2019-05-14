@@ -1,0 +1,22 @@
+<h4>ユーザー作成画面</h4>
+<% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |message| %>
+    <%= message %><br>
+  <% end %>
+<% end %>
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+  <%= f.label :email %><br>
+  <%= f.text_field :email %><br>
+  <%= f.label :password %>(※4文字以上)<br>
+  <%= f.text_field :password %><br>
+  <%= f.label :password_confirmation %><br>
+  <%= f.text_field :password_confirmation %><br>
+  <%= f.label :role_admin %>
+  <%= f.check_box :admin, :as => :boolean %><br>
+
+  <%= f.submit "作成する", name: "admin" %><br>
+<% end %>
+
+<%= link_to "ユーザー一覧", admin_users_path %>

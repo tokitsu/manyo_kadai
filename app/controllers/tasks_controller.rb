@@ -14,14 +14,28 @@ class TasksController < ApplicationController
   end
 
   def index
-    if params[:task][:search] == "true"
-      @tasks = Task.where("name LIKE ?", "%#{ params[:task][:name] }%")
-    elsif params[:sort_expired] == "true"
+    if params[:sort_expired] == "true"
       @tasks = Task.all.order(expired_date: "DESC")
     else
       @tasks = Task.all.order(created_at: "DESC")
     end
   end
+
+  def search
+    if params[:task][:name].present? && params[:task][:status].present?
+      @tasks = Task.name_status_search(params[:task][:name], params[:task][:status])
+      flash[:notice] = "検索結果を表示しています。"
+      render "index"
+    elsif params[:task][:status].present?
+      @tasks = Task.status_search(params[:task][:status])
+      flash[:notice] = "検索結果を表示しています。"
+      render "index"
+    elsif
+      flash[:notice] = "検索項目を入力してください"
+      render "index"
+    end
+  end
+
 
   def edit
     @task = Task.find(params[:id])
