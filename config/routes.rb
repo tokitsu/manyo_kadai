@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'sessions/new'
   root to: "tasks#index"
+  get '/search',to: 'tasks#search'
   resources:tasks
   namespace :admin do
     resources :users

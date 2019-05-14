@@ -3,15 +3,15 @@
   タスク<%= t('view.index')%></h3>
 <%= notice %><br>
   <h3><%= image_tag('/assets/111.png') %><%= link_to t('view.new'), new_task_path %></h3><br>
-<%= form_with(model: Task.new, local:true, method: :get, url: tasks_path) do |f|%>
-  <h4>タスク検索</h4>
-  <%= f.label :name_search, "タイトル" %><br>
-  <%= f.text_field :name %><br>
-  <%= f.label :status_search, "状態" %><br>
-  <%= f.select :status, Task.statuses.keys %>
-  <%= f.hidden_field :search, value: 'true' %><br>
-  <%= f.submit "検索する"%>
-<% end %><br>
+  <%= form_with(model: Task.new, local:true, method: :get, url: search_path) do |f|%>
+    <%= f.label :name_search, "タイトル検索" %><br>
+    <%= f.text_field :name %><br>
+    <%= f.label :status_search, "状態検索" %><br>
+    <%= f.select :status, Task.statuses.keys, {waiting:'waiting',working:'working',completed:'completed'} %>
+    <%= f.hidden_field :search, value: 'true' %><br>
+    <%= f.submit "検索する"%>
+  <% end %><br>
+
 <%= link_to "新着順にする", tasks_path %><br>
 <%= link_to "終了期限順にする", tasks_path(sort_expired: "true") %><br>
 <%= link_to "優先順位順にする", tasks_path(sort_priority: "true") %>
