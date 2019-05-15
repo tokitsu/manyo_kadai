@@ -9,6 +9,7 @@ FactoryBot.define do
     name { "test1" }
     content {"testtesttest"}
     expired_date {"2019-05-20"}
+    status {"waiting"}
   end
 
   # 作成するテストデータの名前を「second_task」とします
@@ -87,4 +88,16 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(task_dates).to eq %w(test1 test2)
 
   end
+
+  scenario "タスクが検索できているかのテスト" do
+
+    visit tasks_path
+
+    fill_in 'task_name', with: 'test1'
+
+    click_on '検索する'
+
+    expect(page).to have_content 'waiting','test1'
+  end
+
 end
