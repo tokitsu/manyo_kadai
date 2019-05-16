@@ -78,4 +78,43 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   end
 
+  scenario "ログアウトのテスト" do
+
+    visit new_user_path
+
+    fill_in 'user_name', with: 'vivi'
+    fill_in 'user_email', with: 'vivi@yahoo.co.jp'
+    fill_in 'user_password', with: 'vivivi'
+    fill_in 'user_password_confirmation', with: 'vivivi'
+
+    click_on '登録する'
+
+    click_on 'ログアウト'
+
+    expect(page).to have_content 'ログアウトしました'
+
+  end
+
+  scenario "ログインのテスト" do
+
+    visit new_user_path
+
+    fill_in 'user_name', with: 'vivi'
+    fill_in 'user_email', with: 'vivi@yahoo.co.jp'
+    fill_in 'user_password', with: 'vivivi'
+    fill_in 'user_password_confirmation', with: 'vivivi'
+
+    click_on '登録する'
+
+    click_on 'ログアウト'
+
+    fill_in 'session_email', with: 'vivi@yahoo.co.jp'
+    fill_in 'session_password', with: 'vivivi'
+
+    click_on 'ログインする'
+
+    expect(page).to have_content 'ログアウト'
+
+  end
+
 end
