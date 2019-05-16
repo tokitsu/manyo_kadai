@@ -1,0 +1,10 @@
+<%= @user.name%>さんのタスク<br><br>
+
+<% @user.tasks.each do |task|%>
+名前
+<%= task.name %><br>
+内容
+<%= task.content %><br><br>
+<% end %><br>
+
+<%= link_to "ユーザー一覧", admin_users_path %>
