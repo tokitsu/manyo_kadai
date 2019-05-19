@@ -34,7 +34,8 @@ class TasksController < ApplicationController
       @tasks = Task.status_search(params[:task][:status])
       flash[:notice] = "ステータスで絞り込みました。"
       render "index"
-    elsif
+    else
+      @tasks = Task.all
       flash[:notice] = "検索項目を入力してください。"
       render "index"
     end
