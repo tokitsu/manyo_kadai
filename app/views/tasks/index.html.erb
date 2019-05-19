@@ -5,7 +5,7 @@
   <%= f.label :name_search, "タイトル検索" %><br>
   <%= f.text_field :name %><br>
   <%= f.label :status_search, "状態検索" %><br>
-  <%= f.select :status, Task.statuses.keys, {waiting:'waiting',working:'working',completed:'completed'} %>
+  <%= f.select :status, Task.statuses, include_blank: true, selected: "" %>
   <%= f.hidden_field :search, value: 'true' %><br>
   <%= f.submit "検索する"%>
 <% end %><br>

@@ -24,14 +24,18 @@ class TasksController < ApplicationController
   def search
     if params[:task][:name].present? && params[:task][:status].present?
       @tasks = Task.name_status_search(params[:task][:name], params[:task][:status])
-      flash[:notice] = "検索結果を表示しています。"
+      flash[:notice] = "タイトルとステータスで絞り込みました。"
+      render "index"
+    elsif params[:task][:name].present?
+      @tasks = Task.name_search(params[:task][:name])
+      flash[:notice] = "タイトルで絞り込みました。"
       render "index"
     elsif params[:task][:status].present?
       @tasks = Task.status_search(params[:task][:status])
-      flash[:notice] = "検索結果を表示しています。"
+      flash[:notice] = "ステータスで絞り込みました。"
       render "index"
     elsif
-      flash[:notice] = "検索項目を入力してください"
+      flash[:notice] = "検索項目を入力してください。"
       render "index"
     end
   end
