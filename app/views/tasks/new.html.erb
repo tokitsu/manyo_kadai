@@ -1,10 +1,10 @@
 <h3>新規作成</h3>
 <%= form_with(model: @task, local: true) do |form|%>
 
-<%= form.label :名前 %><br>
+<%= form.label :名前%><br>
 <%= form.text_field :name %><br>
 
-<%= form.label :内容　%><br>
+<%= form.label :内容%><br>
 <%= form.text_area :content %><br>
 
 <%= form.submit "投稿する" %>
