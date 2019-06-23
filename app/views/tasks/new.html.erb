@@ -1,13 +1,24 @@
 <h3>新規作成</h3>
+
+<% if @task.errors.any? %>
+  <% @task.errors.full_messages.each do |message| %>
+    <%= message %><br>
+  <% end %>
+<% end %>
+
+
+
+
+
 <%= form_with(model: @task, local: true) do |form|%>
 
-<%= form.label :name %><br>
-<%= form.text_field :name %><br>
+  <%= form.label :name %><br>
+  <%= form.text_field :name %><br>
 
-<%= form.label :content %><br>
-<%= form.text_area :content %><br>
+  <%= form.label :content %><br>
+  <%= form.text_area :content %><br>
 
-<%= form.submit t('view.submit') %>
+  <%= form.submit t('view.submit') %>
 <% end %><br>
 
 <%= link_to t('view.index'), tasks_path %>
