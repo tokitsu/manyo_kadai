@@ -1,4 +1,3 @@
-# README        
 
 ## タスク管理アプリケーションの作成(ruby on railsを使用する)    
  ruby -v 2.6.2
