@@ -14,7 +14,13 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all.order(created_at: "DESC")
+  if params[:sort_priority] == "true"
+    @tasks = Task.all.order(priority: "ASC")
+  elsif params[:sort_expired] == "true"
+      @tasks = Task.all.order(expired_date: "ASC")
+    else
+      @tasks = Task.all.order(created_at: "DESC")
+    end
   end
 
   def edit
@@ -42,7 +48,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :content)
+    params.require(:task).permit(:name,:content,:expired_date,:status,:priority)
   end
 
 end
