@@ -1,0 +1,18 @@
+<% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |message| %>
+    <%= message %><br>
+  <% end %>
+<% end %>
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+  <%= f.label :email %><br>
+  <%= f.text_field :email %><br>
+  <%= f.label :password %>(※4文字以上)<br>
+  <%= f.text_field :password %><br>
+  <%= f.label :password_confirmation %><br>
+  <%= f.text_field :password_confirmation %><br>
+  <%= f.submit "登録する"%><br>
+
+<% end %>
