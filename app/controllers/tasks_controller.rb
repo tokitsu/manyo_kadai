@@ -15,8 +15,10 @@ class TasksController < ApplicationController
 
   def index
 
+
     else
-      @tasks = Task.all.order(created_at: "DESC")
+      @tasks = Task.all.order(created_at: "DESC").page(params[:page])
+
     end
   end
 

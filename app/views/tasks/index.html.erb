@@ -1,26 +1,23 @@
 <h3><%= t('view.index')%></h3>
 <%= notice %><br>
 
-<%= form_with(model: Task.new, local:true, method: :get, url: search_path) do |f|%>
-  <%= f.label :name_search, "タイトル検索" %><br>
-  <%= f.text_field :name %><br>
-  <%= f.label :status_search, "状態検索" %><br>
-  <%= f.select :status, Task.statuses, include_blank: true, selected: "" %>
-  <%= f.hidden_field :search, value: 'true' %><br>
-  <%= f.submit "検索する"%>
-<% end %><br>
-
-<% @tasks.each do |task| %>
-  <%=t('view.name')%><%= task.name %><br>
-  <%= t('view.content')%><%= task.content %><br>
-  期限 <%= task.expired_date %><br>
-  状態 <%= task.status %><br>
-  優先順位<%= task.priority %><br><br>
-  <%= link_to t('view.edit'),edit_task_path(task.id) %>
-  <%= link_to t('view.show'), task_path(task.id) %>
-  <%= link_to t('view.destroy'), task_path(task.id), method: :delete, data:{ confirm: "本当に削除していいですか？"} %><br><br>
-<% end %><br><br>
 <%= link_to "新着順にする", tasks_path %><br>
 <%= link_to "終了期限順にする", tasks_path(sort_expired: "true") %><br>
-<%= link_to "優先順位順にする", tasks_path(sort_priority: "true") %><br>
-<%= link_to t('view.new'), new_task_path %>
+<%= link_to "優先順位順にする", tasks_path(sort_priority: "true") %>
+
+<% @tasks.each do |task| %>
+　<div class="list-group">
+  <a href="#" class="list-group-item active">
+  <%= t('view.name')%>: <%= task.name %><br></a>
+  <a href="#" class="list-group-item">
+  <%= t('view.content')%>: <%= task.content %><br></a>
+  <a href="#" class="list-group-item">
+  期限: <%= task.expired_date %>
+  　状態: <%= task.status %>
+  　優先順位: <%= task.priority %></a>
+  　<%= link_to t('view.edit'),edit_task_path(task.id) %>
+  <%= link_to t('view.show'), task_path(task.id) %>
+  <%= link_to t('view.destroy'), task_path(task.id), method: :delete, data:{ confirm: "本当に削除していいですか？"} %>
+  </div>
+<% end %>
+　<%= paginate @tasks %>
